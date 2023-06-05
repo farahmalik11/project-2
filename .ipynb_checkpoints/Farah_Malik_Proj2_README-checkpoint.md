@@ -89,7 +89,7 @@ Several new variables were generated, often with the goal of capture a large amo
 - These scores were then ranked into quintiles (Bottom average scores were in Quintile 1 and recieved a rank of 1, Top average scores were in Quintile 5 and recieved a rank of 5), these ranks were merged into the larger data by neighborhood, and all ranks were added together to create a neighbhorhood score and used in the model to account for location desirability and its impact on Sale Price.
 
 #### 4. Data Modeling
-Once our data was completed cleaned, manipulated, and features were engineered, data modeling took place. In this step, all features from the data exploration were trialed and tested in a multiple linear regression model and R^2s and RMSE's were recorded. Variables were added and ommitted until the model began to become more robust. 
+Once our data was completely cleaned, manipulated, and features were engineered, data modeling took place by taking a train_test_split (75% training data, and 25% testing data _within_ the training.csv dataset). In the modeling step, all features from the data exploration were trialed and tested in a multiple linear regression model and R^2s and RMSE's were recorded. Variables were added and ommitted until the model began to become more robust. 
 
 One model was predicting on non-log-transformed Sale Price, whilst another was testing on log-transformed Sale Price. The log-transformed version was yielding a better model (higher R^2 and lower RMSE) than the non-log-transformed version, therefore the log-tranformed version was ultimately used. 
 
@@ -99,7 +99,7 @@ To address overfitting, both RidgeCV and LassoCV regularization were performed. 
 
 While the training R^2 was larger than the testing R^2, neither Ridge nor Lasso CV regularization appeared to be addressing the overfitting. This was the case after several iterations of changing the strength of the regularization (alpha), as well as removing variables to make the model simpler, and increasing/decreasing the number of cross-validations performed. Each scenario resulted in the RMSE score increasing and R^2 either remaining constant or decreasing slightly.
 
-Still, this model was the strongest in that it had the good R^2, a smaller RMSE relative to the null model and other models that were run in comparison, and was fitted to address overfitting.
+Still, this model was the strongest in that it had the good R^2, a smaller RMSE relative to the null model and other models that were run in comparison, and was fitted to address overfitting. This fitted model was applied to entire training dataset, and used to predict values on the true testing dataset.
 
 #### 5. Key Findings and Insights 
 
